@@ -357,8 +357,10 @@ function contarTickets(){
 
 
 
-//calcula el total de todos los ingresos de un concierto.
+//let asistentes = 150;
 
+
+//calcula el total de todos los ingresos de un concierto.
 function calcularTotal() {
   let id = Number.parseInt(prompt("Introduce el ID del cartel:"));
   let total = 0;
@@ -374,9 +376,22 @@ function calcularTotal() {
   gastosGestion = ticketsVendidos * 0.9;
   //multiplicacion con el metodo imul de math
   total = Math.imul(ticketsVendidos, 30) + gastosGestion;
+
+  let ingresoPromedio = calcularIngresoPorAsistente(total, ticketVendidos);
+  
   let ingresoSala = Math.floor(total * 0.70);
   let ingresoArtista = Math.floor(total - ingresoSala);
-  alert("Las ganacias son de un total: " + total + "€. La sala se lleva: " + ingresoSala +"€ y el artista: " + ingresoArtista + "€.");
+  alert("Las ganancias son de un total: " + total + "€. La sala se lleva: " + ingresoSala +"€ y el artista: " + ingresoArtista + "€. El ingreso promedio por asistente es: ", ingresoPromedio.tofixed(2), "€.");
+}
+
+
+function calcularIngresoPorAsistente(total, asistentes) {
+  if (asistentes > 0) {
+    let ingresoPorAsistente = (total / asistentes).toFixed(2);
+    return ingresoPorAsistente; // Retorna el ingreso promedio por asistente
+  } else {
+    return 0.00; 
+  }
 }
 
 
